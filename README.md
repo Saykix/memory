@@ -1,2 +1,2 @@
 # memory
-memory game assemble pairs
+memory game assemble pair
