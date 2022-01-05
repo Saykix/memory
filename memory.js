@@ -41,7 +41,7 @@ function doClick(id){//function when you click on a card
     }   
     if(find != 1){
         let rowCol = id.replace('tile-', '').split('-');//we remove the usless part of the id (tile-0-0) into 00 and insert it in a table
-        let position = parseInt(rowCol[0]) * 4 + parseInt(rowCol[1])//calcul the location of the card
+        let position = parseInt(rowCol[0]) * 4 + parseInt(rowCol[1]);//calcul the location of the card
 
 
         document.querySelector(`#${id}`).classList.add(board[position]);//add the class to a card when it's click
