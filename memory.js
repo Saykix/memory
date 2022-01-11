@@ -6,8 +6,9 @@ let id2;
 let check1;
 let check2;
 let trouver=[];
+let score=0;
 
-console.log(`Board ${board}`);
+//console.log(`Board ${board}`);
 
 function initBoard(){//function that create the board by making the card random
     let board = [];
@@ -48,31 +49,43 @@ function doClick(id){//function when you click on a card
 
 
         if (check==0){//action to do on the first click
-            console.log(check);
             check++;
             if(id1){ //if id1 isn't empty        
-                console.log(`id1${id1}`);
-
                 
                 if(check1!==check2){//if the class of the two card aren't the same 
                     document.querySelector('#'+id1).classList.remove(check1);//remove the class to the card 1
                     document.querySelector('#'+id2).classList.remove(check2);//remove the class to the card 2
-                    console.log('dommage t nul');
+                    document.getElementById("PAIRE").innerHTML="Dommage ce n'est pas une paire";
+                    if(score<=0){
+                        score=0;
+                        document.getElementById("SCORE").innerHTML=`votre score est de: ${score}`;
+                    }
+                    else if(score<=50){
+                        score-=50;
+                        if(score<0){
+                            score=0;
+                            document.getElementById("SCORE").innerHTML=`votre score est de: ${score}`;
+                        }
+                    }
+                    else{
+                        score-=50;
+                        document.getElementById("SCORE").innerHTML=`votre score est de: ${score}`;
+                    }
                 }
             }
             id1=id; //we keep the id to verify if the card was already click
             check1=board[position];//we keep the class to check if it's the same as the second card and remove it if it isn't 
         }
         else if(id !== id1){//action to do on the second click
-            console.log(check);
             id2=id;//we keep the id to verify if the card was already click
             check2=board[position];//we keep the class to check if it's the same as the first card and remove it if it isn't 
             check=0;
-            console.log(`id1${id1}`);
             if(check1 == check2){//if the player found a pair
-                    console.log('bienjouer vous avez trouvé une paire!');
+                document.getElementById("PAIRE").innerHTML="Bien jouer tu as trouvé une paire";
                     trouver.push(id1,id2);//we add the id of the two card to the table to prevent it to bo click again
+                    score+=100;
+                    document.getElementById("SCORE").innerHTML=`votre score est de: ${score}`;
             }  
-        } 
+        }
     }
 }
